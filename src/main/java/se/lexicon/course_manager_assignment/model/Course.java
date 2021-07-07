@@ -1,32 +1,34 @@
 package se.lexicon.course_manager_assignment.model;
 import java.time.LocalDate;
 
+import static se.lexicon.course_manager_assignment.data.sequencers.CourseSequencer.nextCourseId;
+
 public class Course {
 
 
-    int Id;
-    Course courseName;
+    int id;
+    String courseName;
     LocalDate startDate;
     int weekDuration;
-    Student student;
+    Student students;   // Collection<Student>
 
-    public Course(int id, Course courseName, LocalDate startDate, int weekDuration, Student student) {
-        Id = id;
+    public Course(int id, String courseName, LocalDate startDate, int weekDuration, Student student) {
+        this.id = nextCourseId();
         this.courseName = courseName;
         this.startDate = startDate;
         this.weekDuration = weekDuration;
-        this.student = student;
+        this.students = students;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
-    public Course getCourseName() {
+    public String getCourseName() {
         return courseName;
     }
 
-    public void setCourseName(Course courseName) {
+    public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
@@ -39,13 +41,30 @@ public class Course {
     }
 
 
-    public Student getStudents() {
-        return student;
+    public Student getStudents() {          // Collection<Student>
+        return students;
     }
 
-    public void setStudent(Student students) {
-        this.student = student;
+    public void setStudents(Student students) {
+        this.students = students;
     }
+  /*
+    public boolean enrollStudent(Student student) {   // Add Student obj ej duplicate eller null, return true or false
+    }
+
+    public boolean unenrollStudent(Student student) {// Remove a Student.class object, return true When obj removed
+
+    }
+
+    @Override
+    equals
+    hashCode
+    toString
+
+ */
+
+
+
 }
 
 
