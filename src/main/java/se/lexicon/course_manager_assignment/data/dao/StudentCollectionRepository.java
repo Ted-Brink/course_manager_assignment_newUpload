@@ -18,13 +18,20 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public Student createStudent(String name, String email, String address) {
+
         return null;
     }
 
     @Override
     public Student findByEmailIgnoreCase(String email) {
+        for (Student student : students) {
+            if (student.getEmail() == email) {
+                return student;
+            }
+        }
         return null;
     }
+
 
     @Override
     public Collection<Student> findByNameContains(String name) {
@@ -32,9 +39,15 @@ public class StudentCollectionRepository implements StudentDao {
     }
 
     @Override
-    public Student findById(int id) {
-        return null;
-    }
+    public Student findById(int id){           ///////////////////////////////////////////////
+            for (Student student : students) {
+                if (student.getId() == id) {
+                    return student;
+                }
+            }
+            return null;
+        }
+
 
     @Override
     public Collection<Student> findAll() {
