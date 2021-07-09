@@ -1,5 +1,7 @@
 package se.lexicon.course_manager_assignment.model;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 import static se.lexicon.course_manager_assignment.data.sequencers.CourseSequencer.nextCourseId;
@@ -11,14 +13,16 @@ public class Course {
     String courseName;
     LocalDate startDate;
     int weekDuration;
-    Student students;   // Collection<Student>
+    Student student;
+    private List<Student> students; // Collection<Student>
+
 
     public Course(int id, String courseName, LocalDate startDate, int weekDuration, Student student) {
         this.id = nextCourseId();
         this.courseName = courseName;
         this.startDate = startDate;
         this.weekDuration = weekDuration;
-        this.students = students;
+        this.student = student;
     }
 
     public int getId() {
@@ -43,23 +47,30 @@ public class Course {
 
 
     public Student getStudents() {          // Collection<Student>
-        return students;
+        return student;
     }
 
-    public void setStudents(Student students) {
-        this.students = students;
-    }
-  /*
-    public boolean enrollStudent(Student student) {   // Add Student obj ej duplicate eller null, return true or false
+    public void setStudents(Student student) {
+        this.student = student;
     }
 
-    public boolean unenrollStudent(Student student) {// Remove a Student.class object, return true When obj removed
+    //public boolean enrollStudent(Student student) {   // Add Student ej duplicate eller null, return true or false
+    public boolean  enrollStudent(Student student){
 
-    }   */
+        if(students.contains(student))
+            return false;
+        else
+        students.add(student);         // Metod för kontroll av null eller duplicate behövs
+        return true;   // return false vid duplicate eller null
+    }
+
+
+    public boolean unenrollStudent(Student student) {
+        students.remove(student);
+        return true;        // metod för att ekräfta borttagning behövs
+    }
 
     // @Override, equals, hashCode, toString
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,8 +96,6 @@ public class Course {
                 ", students=" + students +
                 '}';
     }
-
-
 
 }
 

@@ -19,13 +19,14 @@ public class StudentCollectionRepository implements StudentDao {
     @Override
     public Student createStudent(String name, String email, String address) {
 
-        return null;
+        return null;                /////////////////////////// nåt ska returneras???
+
     }
 
     @Override
     public Student findByEmailIgnoreCase(String email) { ////////////////////////////////////////////
         for (Student student : students) {
-            if (student.getEmail().equals(email)) {
+            if (student.getEmail().equalsIgnoreCase(email)) {
                 return student;
             }
         }
@@ -35,6 +36,12 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public Collection<Student> findByNameContains(String name) {
+
+        for (Student student : students) {
+            if (student.getName().equalsIgnoreCase(name)) {
+                return name;
+            }
+        }
         return null;
     }
 
