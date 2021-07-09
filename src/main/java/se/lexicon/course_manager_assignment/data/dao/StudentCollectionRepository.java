@@ -23,9 +23,9 @@ public class StudentCollectionRepository implements StudentDao {
     }
 
     @Override
-    public Student findByEmailIgnoreCase(String email) {
+    public Student findByEmailIgnoreCase(String email) { ////////////////////////////////////////////
         for (Student student : students) {
-            if (student.getEmail() == email) {
+            if (student.getEmail().equals(email)) {
                 return student;
             }
         }
