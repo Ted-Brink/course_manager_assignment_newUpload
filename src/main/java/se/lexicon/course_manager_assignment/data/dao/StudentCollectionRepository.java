@@ -4,8 +4,11 @@ package se.lexicon.course_manager_assignment.data.dao;
 
 import se.lexicon.course_manager_assignment.model.Student;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+
+import static se.lexicon.course_manager_assignment.data.sequencers.StudentSequencer.nextStudentId;
 
 
 public class StudentCollectionRepository implements StudentDao {
@@ -18,8 +21,7 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public Student createStudent(String name, String email, String address) {
-
-        return null;                /////////////////////////// nåt ska returneras???
+        return new Student(nextStudentId(), name, email, address);                /////////////////////////// student ska returneras???
 
     }
 
@@ -35,14 +37,14 @@ public class StudentCollectionRepository implements StudentDao {
 
 
     @Override
-    public Collection<Student> findByNameContains(String name) {
-
+    public Collection<Student> findByNameContains(String name) {    ////// FEEEEEEEEL
+        ArrayList<Student> matchStudents = new ArrayList<>();
         for (Student student : students) {
-            if (student.getName().equalsIgnoreCase(name)) {
-                return name;
+            if (student.getName().toLowerCase().contains(name.toLowerCase())) {
+                matchStudents.add(student);
             }
         }
-        return null;
+        return matchStudents;
     }
 
     @Override
@@ -57,12 +59,12 @@ public class StudentCollectionRepository implements StudentDao {
 
 
     @Override
-    public Collection<Student> findAll() {
+    public Collection<Student> findAll() {      //ContainsALL()
         return null;
     }
 
     @Override
-    public boolean removeStudent(Student student) {
+    public boolean removeStudent(Student student) {     //remove()
         return false;
     }
 

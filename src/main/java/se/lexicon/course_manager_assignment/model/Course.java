@@ -60,14 +60,14 @@ public class Course {
         if(students.contains(student))
             return false;
         else
-        students.add(student);         // Metod för kontroll av null eller duplicate behövs
-        return true;   // return false vid duplicate eller null
+        return students.add(student);         // Metod för kontroll av null eller duplicate behövs
+
     }
 
 
     public boolean unenrollStudent(Student student) {
-        students.remove(student);
-        return true;        // metod för att ekräfta borttagning behövs
+
+        return students.remove(student);        // metod för att bekräfta borttagning behövs
     }
 
     // @Override, equals, hashCode, toString
