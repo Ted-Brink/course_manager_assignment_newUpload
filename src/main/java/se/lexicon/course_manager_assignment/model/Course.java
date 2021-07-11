@@ -18,11 +18,14 @@ public class Course {
 
 
     public Course(int id, String courseName, LocalDate startDate, int weekDuration, Student student) {
-        this.id = nextCourseId();
+        this.id = id;
         this.courseName = courseName;
         this.startDate = startDate;
         this.weekDuration = weekDuration;
         this.student = student;
+    }
+
+    public Course(int id, String courseName, LocalDate startDate, int weekDuration) {
     }
 
     public int getId() {
@@ -67,7 +70,7 @@ public class Course {
 
     public boolean unenrollStudent(Student student) {
 
-        return students.remove(student);        // metod för att bekräfta borttagning behövs
+        return students.remove(student);
     }
 
     // @Override, equals, hashCode, toString

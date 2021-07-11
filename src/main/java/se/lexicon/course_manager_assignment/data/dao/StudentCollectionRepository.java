@@ -21,12 +21,12 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public Student createStudent(String name, String email, String address) {
-        return new Student(nextStudentId(), name, email, address);                /////////////////////////// student ska returneras???
+        return new Student(nextStudentId(), name, email, address);
 
     }
 
     @Override
-    public Student findByEmailIgnoreCase(String email) { ////////////////////////////////////////////
+    public Student findByEmailIgnoreCase(String email) {
         for (Student student : students) {
             if (student.getEmail().equalsIgnoreCase(email)) {
                 return student;
@@ -37,7 +37,7 @@ public class StudentCollectionRepository implements StudentDao {
 
 
     @Override
-    public Collection<Student> findByNameContains(String name) {    ////// FEEEEEEEEL
+    public Collection<Student> findByNameContains(String name) {
         ArrayList<Student> matchStudents = new ArrayList<>();
         for (Student student : students) {
             if (student.getName().toLowerCase().contains(name.toLowerCase())) {
@@ -48,7 +48,7 @@ public class StudentCollectionRepository implements StudentDao {
     }
 
     @Override
-    public Student findById(int id){           ///////////////////////////////////////////////
+    public Student findById(int id){
             for (Student student : students) {
                 if (student.getId() == id) {
                     return student;
@@ -59,14 +59,17 @@ public class StudentCollectionRepository implements StudentDao {
 
 
     @Override
-    public Collection<Student> findAll() {      //ContainsALL()
-        return null;
+    public Collection<Student> findAll() {      //ContainsALL()???????????
+        return students;
+
     }
 
     @Override
-    public boolean removeStudent(Student student) {     //remove()
-        return false;
-    }
+    public boolean removeStudent(Student student) {     // return false eller true. false enligt beskrivning
+        return students.remove(student);
+        }
+
+
 
     @Override
     public void clear() {

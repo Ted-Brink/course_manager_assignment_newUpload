@@ -5,8 +5,11 @@ package se.lexicon.course_manager_assignment.data.dao;
 import se.lexicon.course_manager_assignment.model.Course;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+
+import static se.lexicon.course_manager_assignment.data.sequencers.CourseSequencer.nextCourseId;
 
 
 public class CourseCollectionRepository implements CourseDao{
@@ -20,23 +23,36 @@ public class CourseCollectionRepository implements CourseDao{
 
     @Override
     public Course createCourse(String courseName, LocalDate startDate, int weekDuration) {
-        return null;
+        return new Course(nextCourseId(), courseName, startDate, weekDuration);
     }
 
     @Override
     public Course findById(int id) {
+        for(Course course: courses) {
+            if (course.getId() == id) {
+                return course;
+            }
+        }
         return null;
     }
 
     @Override
-    public Collection<Course> findByNameContains(String name) {
-        return null;
+    public Collection<Course> findByNameContains(String name) {        ////////////////KOLLA UPP name??? course???
+        ArrayList<Course> matchCourses = new ArrayList<>();
+        for (Course course : courses) {
+            if (course.getCourseName().toLowerCase().contains(name.toLowerCase())) {
+                matchCourses.add(course);
+            }
+        }
+        return matchCourses;
     }
+
 
     @Override
     public Collection<Course> findByDateBefore(LocalDate end) {
         return null;
     }
+
 
     @Override
     public Collection<Course> findByDateAfter(LocalDate start) {
